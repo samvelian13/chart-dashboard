@@ -23,7 +23,8 @@
     "jsonwebtoken": "^8.5.1",
     "lowdb": "^1.0.0",
     "nuxt": "^2.0.0",
-    "uuid": "^3.4.0"
+    "uuid": "^3.4.0",
+    "vee-validate": "^3.2.2"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",
