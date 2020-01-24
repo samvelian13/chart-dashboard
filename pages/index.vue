@@ -29,7 +29,7 @@
                 >
                   <v-select
                     v-model="chartFilter.from"
-                    :items="chartData.labels"
+                    :items="labelsFromCache"
                     :error-messages="errors"
                     label="From"
                   />
@@ -43,7 +43,7 @@
                 >
                   <v-select
                     v-model="chartFilter.to"
-                    :items="chartData.labels"
+                    :items="labelsFromCache"
                     :error-messages="errors"
                     label="To"
                   />
@@ -91,9 +91,20 @@ export default {
           text: 'Dashboard'
         },
         scales: {
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: 'Amount'
+              }
+            }
+          ],
           xAxes: [
             {
-              ticks: {}
+              scaleLabel: {
+                display: true,
+                labelString: 'Months'
+              }
             }
           ],
           yAxis: [
@@ -108,7 +119,11 @@ export default {
     }
   },
   computed: {
-    ...mapState('dashboard', ['reportsChartData', 'chartLoading'])
+    ...mapState('dashboard', [
+      'reportsChartData',
+      'chartLoading',
+      'labelsFromCache'
+    ])
   },
   watch: {
     reportsChartData(newData) {
@@ -118,19 +133,14 @@ export default {
       async handler() {
         this.showFilterError = false
         const isValid = await this.$refs.filter.validate()
-        const { from, to } = this.chartFilter
+        const { from, to } = { ...this.chartFilter }
 
         if (!isValid) {
           return false
         } else if (moment(from, 'MMM-YYYY').isSameOrAfter(to, 'month')) {
           this.showFilterError = true
         } else {
-          const optionsClone = { ...this.chartOptions }
-          optionsClone.scales.xAxes[0].ticks = {
-            min: from,
-            max: to
-          }
-          this.chartOptions = { ...optionsClone }
+          this.getReports(this.chartFilter)
         }
       },
       deep: true
@@ -143,10 +153,7 @@ export default {
     ...mapActions('dashboard', ['getReports']),
     ...mapMutations(['snackbarOpen']),
     resetFilter() {
-      this.chartFilter = {
-        from: null,
-        to: null
-      }
+      this.getReports()
     }
   }
 }

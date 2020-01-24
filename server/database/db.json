@@ -1,10 +1,77 @@
 {
   "users": [
     {
-      "id": "02cd3790-3e2f-11ea-a9be-77af69cd0907",
-      "userName": "aaa22",
-      "email": "test@test.com",
-      "password": "$2b$10$5JLhSrHgZK5S4HorIpVJxu0pFHVitI39va7xO0G9xX5lNLaF/W022"
+      "id": "7349a100-3b02-11ea-9ade-3da8e408eda1",
+      "userName": "test",
+      "email": "test@mail.ru",
+      "password": "$2b$10$gPP/b5y2pPwvlFb3VymTwO.COc9opypnAyA46zQykBKhME9vpyWUC"
+    }
+  ],
+  "reports": [
+    {
+      "id": "1",
+      "date": "2019-01-09",
+      "amount": "50"
+    },
+    {
+      "id": "2",
+      "date": "2019-02-12",
+      "amount": "60"
+    },
+    {
+      "id": "3",
+      "date": "2019-03-12",
+      "amount": "80"
+    },
+    {
+      "id": "4",
+      "date": "2019-04-12",
+      "amount": "20"
+    },
+    {
+      "id": "5",
+      "date": "2019-05-12",
+      "amount": "100"
+    },
+    {
+      "id": "6",
+      "date": "2019-06-12",
+      "amount": "50"
+    },
+    {
+      "id": "7",
+      "date": "2019-07-12",
+      "amount": "160"
+    },
+    {
+      "id": "8",
+      "date": "2019-08-12",
+      "amount": "111"
+    },
+    {
+      "id": "9",
+      "date": "2019-09-12",
+      "amount": "150"
+    },
+    {
+      "id": "10",
+      "date": "2019-10-19",
+      "amount": "364"
+    },
+    {
+      "id": "11",
+      "date": "2019-11-12",
+      "amount": "550"
+    },
+    {
+      "id": "12",
+      "date": "2019-12-12",
+      "amount": "750"
+    },
+    {
+      "id": "13",
+      "date": "2020-01-20",
+      "amount": "100"
     }
   ]
 }

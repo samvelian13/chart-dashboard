@@ -7,13 +7,9 @@ export default {
       const reports = await this.$axios.$get(REPORTS, {
         params: payload
       })
-      setTimeout(() => {
-        commit('getReportsSuccess', reports)
-      }, 3000)
+      commit('getReportsSuccess', reports)
     } catch (e) {
-      setTimeout(() => {
-        commit('getReportsFailed')
-      }, 3000)
+      commit('getReportsFailed')
     }
   }
 }
