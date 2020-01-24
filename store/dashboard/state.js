@@ -1,5 +1,5 @@
 export default () => ({
-  labelsFromCache: null,
+  cachedLabels: null,
   reportsChartData: null,
   chartLoading: false
 })

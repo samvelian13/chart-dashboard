@@ -1,14 +1,14 @@
-const colors = require('vuetify/es5/util/colors').default
+import colors from 'vuetify/es5/util/colors'
 require('dotenv/config')
 
-module.exports = {
+export default {
   mode: 'spa',
   /*
    ** Headers of the page
    */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    titleTemplate: '%s - ' + process.env.APP_TITLE,
+    title: process.env.APP_TITLE || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -28,6 +28,12 @@ module.exports = {
    ** Global CSS
    */
   css: ['~/assets/main.scss'],
+
+  /*
+   ** Handle the server middleware
+   */
+  serverMiddleware: ['~/server/index.js'],
+
   /*
    ** Plugins to load before mounting the App
    */
@@ -53,7 +59,6 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    prefix: '/api',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' }
   },
   /*

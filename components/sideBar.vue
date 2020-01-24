@@ -7,8 +7,7 @@
     color="blue"
     permanent
     dark
-    absolute
-    height="100%"
+    fixed
   >
     <v-list dense nav class="py-0">
       <v-list-item two-line class="px-0">
@@ -45,7 +44,7 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-      <v-list-item @click="onLogout" link>
+      <v-list-item @click="onLogout">
         <v-tooltip :disabled="!mini" right>
           <template v-slot:activator="{ on }">
             <v-list-item-icon v-on="on">

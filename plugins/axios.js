@@ -1,6 +1,6 @@
 import tokenParser from '~/helpers/helperCollections'
 
-export default function({ $axios, store, redirect, env }) {
+export default function({ $axios, store, redirect }) {
   $axios.onRequest((request) => {
     if (
       store.getters['auth/loggedIn'] &&
@@ -15,14 +15,13 @@ export default function({ $axios, store, redirect, env }) {
 
   $axios.onError((error) => {
     const code = parseInt(error.response && error.response.status)
-    if (code === 401) {
-      store.commit('setError', error)
-      // redirect('/login')
+    if (code === 401 || code === 500) {
+      redirect({ name: 'auth-login' })
+      store.commit(
+        'snackbarOpen',
+        { text: error.response.data },
+        { root: true }
+      )
     }
-
-    if (code === 500) {
-      store.commit('setError', error)
-    }
-    // throw error
   })
 }

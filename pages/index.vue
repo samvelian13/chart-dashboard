@@ -9,7 +9,7 @@
     <v-card-text>
       <div v-if="chartData">
         <line-chart :chart-data="chartData" :options="chartOptions" />
-        <div class="filter-box mt-5">
+        <div class="mt-5">
           <v-alert
             v-if="showFilterError"
             text
@@ -20,7 +20,7 @@
             Wrong filter data
           </v-alert>
           <ValidationObserver ref="filter">
-            <v-row align="center">
+            <v-row align="center" justify="space-around">
               <v-col cols="4">
                 <ValidationProvider
                   v-slot="{ errors }"
@@ -29,7 +29,7 @@
                 >
                   <v-select
                     v-model="chartFilter.from"
-                    :items="labelsFromCache"
+                    :items="cachedLabels"
                     :error-messages="errors"
                     label="From"
                   />
@@ -43,7 +43,7 @@
                 >
                   <v-select
                     v-model="chartFilter.to"
-                    :items="labelsFromCache"
+                    :items="cachedLabels"
                     :error-messages="errors"
                     label="To"
                   />
@@ -74,6 +74,11 @@ export default {
     lineChart,
     ValidationObserver,
     ValidationProvider
+  },
+  head() {
+    return {
+      title: 'Home'
+    }
   },
   data() {
     return {
@@ -122,7 +127,7 @@ export default {
     ...mapState('dashboard', [
       'reportsChartData',
       'chartLoading',
-      'labelsFromCache'
+      'cachedLabels'
     ])
   },
   watch: {

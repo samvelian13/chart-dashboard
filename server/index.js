@@ -1,32 +1,27 @@
-const consola = require('consola')
-const { Nuxt, Builder } = require('nuxt')
-const config = require('../nuxt.config.js')
-const app = require('./app')
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+// Routes
+const apiRoutes = require('./routes')
+const app = express()
 
-config.dev = process.env.NODE_ENV !== 'production'
-
-async function start() {
-  // Init Nuxt.js
-  const nuxt = new Nuxt(config)
-
-  const { host, port } = nuxt.options.server
-
-  // Build only in dev mode
-  if (config.dev) {
-    const builder = new Builder(nuxt)
-    await builder.build()
-  } else {
-    await nuxt.ready()
-  }
-
-  app.use(nuxt.render)
-
-  app.listen(port, host, () => {
-    consola.ready({
-      message: `Server listening on http://${host}:${port}`,
-      badge: true
-    })
-  })
+const corsOptions = {
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  headers: [
+    'Origin',
+    'X-Requested-With',
+    'Content-Type',
+    'Accept',
+    'Authorization'
+  ],
+  credentials: true
 }
 
-start()
+app.use(cors(corsOptions))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+app.use('/api', apiRoutes)
+
+module.exports = app

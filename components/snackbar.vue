@@ -5,7 +5,6 @@
     :timeout="snackbar.timeout"
     :right="snackbar.x === 'right'"
     :top="snackbar.y === 'top'"
-    @input="snackbarClose"
   >
     <div v-if="typeof snackbar.text === 'object'">
       <p

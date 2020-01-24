@@ -23,14 +23,12 @@ export default {
       if (result.data) {
         localStorage.setItem('token', btoa(JSON.stringify(result.data)))
         commit('registerSuccess')
-        setTimeout(() => {
-          commit(
-            'snackbarOpen',
-            { text: result.message, color: 'green' },
-            { root: true }
-          )
-        }, 2000)
         this.$router.push({ name: 'index' })
+        commit(
+          'snackbarOpen',
+          { text: result.message, color: 'green' },
+          { root: true }
+        )
       }
     } catch (e) {
       commit('snackbarOpen', { text: e.response.data }, { root: true })

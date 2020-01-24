@@ -16,8 +16,8 @@ export default {
       }
       datasets.push(lineConfigs)
     }
-    if (!state.labelsFromCache) {
-      state.labelsFromCache = chartLabels
+    if (!state.cachedLabels) {
+      state.cachedLabels = chartLabels
     }
     state.reportsChartData = { labels: chartLabels, datasets }
     state.chartLoading = false

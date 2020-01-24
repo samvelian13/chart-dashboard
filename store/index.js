@@ -10,10 +10,9 @@ export const state = () => ({
 })
 export const mutations = {
   snackbarOpen(state, payload) {
-    state.snackbar = { ...state.snackbar, ...payload }
-    state.snackbar.value = true
+    state.snackbar = { ...state.snackbar, ...payload, value: true }
   },
   snackbarClose(state) {
-    state.snackbar.value = false
+    state.snackbar = { ...state.snackbar, value: false }
   }
 }

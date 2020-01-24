@@ -36,7 +36,10 @@ const login = (req, res) => {
 const register = async (req, res) => {
   const { userName, email, password } = req.body
 
-  const isUniqueEmail = db.get('users').find({ email }).value()
+  const isUniqueEmail = db
+    .get('users')
+    .find({ email })
+    .value()
   if (isUniqueEmail) {
     return res.status(409).json('This email already taken')
   }
