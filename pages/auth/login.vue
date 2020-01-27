@@ -3,9 +3,9 @@
     <v-col cols="12" lg="6" md="6" sm="8">
       <v-card class="elevation-12">
         <v-overlay :value="false" absolute="absolute">
-          <v-progress-circular :size="50" color="primary" indeterminate />
+          <v-progress-circular :size="50" color="blue" indeterminate />
         </v-overlay>
-        <v-toolbar color="primary" dark>
+        <v-toolbar color="blue" dark>
           <v-toolbar-title>Login</v-toolbar-title>
         </v-toolbar>
         <v-card-text>

@@ -3,9 +3,9 @@
     <v-col cols="12" lg="6" md="6" sm="8">
       <v-card class="elevation-12">
         <v-overlay :value="false" absolute="absolute">
-          <v-progress-circular :size="50" color="primary" indeterminate />
+          <v-progress-circular :size="50" color="blue" indeterminate />
         </v-overlay>
-        <v-toolbar color="primary" dark>
+        <v-toolbar color="blue" dark>
           <v-toolbar-title>Register</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
@@ -23,6 +23,7 @@
                   name="userName"
                   prepend-icon="mdi-account"
                   clearable
+                  autocomplete="off"
                 />
               </ValidationProvider>
 
@@ -38,6 +39,7 @@
                   name="email"
                   prepend-icon="mdi-email"
                   clearable
+                  autocomplete="off"
                 />
               </ValidationProvider>
 
@@ -58,6 +60,7 @@
                   label="Password"
                   hint="At least 6 characters"
                   counter="16"
+                  autocomplete="new-password"
                 />
               </ValidationProvider>
 
@@ -77,6 +80,7 @@
                   label="Confirm Password"
                   hint="At least 6 characters"
                   counter="16"
+                  autocomplete="new-password"
                 />
               </ValidationProvider>
               <v-row class="mt-4">

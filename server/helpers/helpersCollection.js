@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const jwtSecret = 'test'
+const jwtSecret = process.env.JWT_SECRET
 
 const normalizeResponseData = (data, message = '') => {
   return {
@@ -8,7 +8,7 @@ const normalizeResponseData = (data, message = '') => {
   }
 }
 
-function getToken(req) {
+const getToken = (req) => {
   let token = null
 
   if (
@@ -23,18 +23,10 @@ function getToken(req) {
   return token
 }
 
-function getUserFromToken(token) {
-  const decoded = jwt.decode(token)
-  return { email: decoded.email }
-}
-
-function generateToken(data) {
-  return jwt.sign(data, jwtSecret)
-}
+const generateToken = (data) => jwt.sign(data, jwtSecret)
 
 module.exports = {
   normalizeResponseData,
   getToken,
-  getUserFromToken,
   generateToken
 }

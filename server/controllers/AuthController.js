@@ -54,6 +54,6 @@ const register = async (req, res) => {
   const accessToken = generateToken({ email, userName })
   return res
     .status(201)
-    .json(normalizeResponseData(accessToken, 'You are successfully sign up'))
+    .json(normalizeResponseData(accessToken, 'You have successfully sign up'))
 }
 module.exports = { login, register }

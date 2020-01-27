@@ -8,7 +8,7 @@ export default {
    */
   head: {
     titleTemplate: '%s - ' + process.env.APP_TITLE,
-    title: process.env.APP_TITLE || '',
+    title: process.env.APP_TITLE || process.env.npm_package_name,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -18,12 +18,19 @@ export default {
         content: process.env.npm_package_description || ''
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,900&display=swap'
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
    */
-  loading: false,
+  loading: { color: '#2196F3' },
   /*
    ** Global CSS
    */
@@ -37,7 +44,11 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/axios.js', '~/plugins/veeValidate.client.js'],
+  plugins: [
+    '~/plugins/axios.client.js',
+    '~/plugins/veeValidate.client.js',
+    '~/plugins/notify.client.js'
+  ],
   /*
    ** Nuxt.js dev-modules
    */

@@ -1,23 +1,17 @@
 <template>
-  <v-snackbar
-    :value="snackbar.value"
-    :color="snackbar.color"
-    :timeout="snackbar.timeout"
-    :right="snackbar.x === 'right'"
-    :top="snackbar.y === 'top'"
-  >
-    <div v-if="typeof snackbar.text === 'object'">
+  <v-snackbar v-bind="settings" :timeout="4000" @input="hide" right top>
+    <div v-if="typeof settings.text === 'object'">
       <p
-        v-for="(item, key, index) in snackbar.text"
+        v-for="(item, key, index) in settings.text"
         :key="index"
         class="font-weight-medium text-capitalize"
       >
         {{ `${key} : ${item}` }}
       </p>
     </div>
-    <span v-else>{{ snackbar.text }}</span>
+    <span v-else>{{ settings.text }}</span>
     <v-btn dark text>
-      <v-icon @click="snackbarClose()">
+      <v-icon @click="hide">
         mdi-close
       </v-icon>
     </v-btn>
@@ -30,10 +24,10 @@ import { mapState, mapMutations } from 'vuex'
 export default {
   name: 'SnackBar',
   computed: {
-    ...mapState(['snackbar'])
+    ...mapState('snackbar', ['settings'])
   },
   methods: {
-    ...mapMutations(['snackbarClose'])
+    ...mapMutations('snackbar', ['hide'])
   }
 }
 </script>

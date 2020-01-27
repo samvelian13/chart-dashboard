@@ -1,4 +1,4 @@
-# ChartDashboard
+# Chart Dashboard
 
 > Dashboard with auth and line chart graphic
 
@@ -6,17 +6,20 @@
 
 ``` bash
 # install dependencies
-$ npm run install
+$ npm install
 
 # serve with hot reload at localhost:3000
-$ npm run dev
+$ nuxt
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+# build for production
+$ nuxt build
+$ nuxt start
 
 # generate static project
-$ npm run generate
+$ nuxt generate
 ```
+Test user credentials 
+email@email.com
+12345678
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

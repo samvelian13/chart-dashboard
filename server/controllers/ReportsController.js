@@ -10,7 +10,7 @@ const getChartData = (req, res) => {
       if (!from || !to) {
         return true
       }
-      return moment(val.date, 'YYYY-MM-DD').isBetween(from, to)
+      return moment(val.date, 'YYYY-MM-DD').isBetween(from, to, 'month', '[]')
     })
     .sortBy('date')
     .value()
@@ -23,10 +23,10 @@ const getChartData = (req, res) => {
   }
   const chartLabels = new Set()
   const xAxisPoints = {
-    amounts: []
+    amount: []
   }
   reports.forEach((item) => {
-    xAxisPoints.amounts.push(item.amount)
+    xAxisPoints.amount.push(item.amount)
     chartLabels.add(moment(item.date, 'YYYY-MM-DD').format('MMM-YYYY'))
   })
 

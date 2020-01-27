@@ -7,8 +7,8 @@
       Reports Chart
     </v-card-title>
     <v-card-text>
-      <div v-if="chartData">
-        <line-chart :chart-data="chartData" :options="chartOptions" />
+      <div v-if="reportsChartData">
+        <line-chart :chart-data="reportsChartData" />
         <div class="mt-5">
           <v-alert
             v-if="showFilterError"
@@ -70,6 +70,7 @@ import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import lineChart from '~/components/lineChart'
 
 export default {
+  layout: 'dashboard',
   components: {
     lineChart,
     ValidationObserver,
@@ -86,40 +87,6 @@ export default {
       chartFilter: {
         from: null,
         to: null
-      },
-      chartData: null,
-      chartOptions: {
-        maintainAspectRatio: false,
-        responsive: true,
-        title: {
-          display: true,
-          text: 'Dashboard'
-        },
-        scales: {
-          yAxes: [
-            {
-              scaleLabel: {
-                display: true,
-                labelString: 'Amount'
-              }
-            }
-          ],
-          xAxes: [
-            {
-              scaleLabel: {
-                display: true,
-                labelString: 'Months'
-              }
-            }
-          ],
-          yAxis: [
-            {
-              ticks: {
-                beginAtZero: true
-              }
-            }
-          ]
-        }
       }
     }
   },
@@ -131,9 +98,6 @@ export default {
     ])
   },
   watch: {
-    reportsChartData(newData) {
-      this.chartData = { ...newData }
-    },
     chartFilter: {
       async handler() {
         this.showFilterError = false
@@ -151,12 +115,15 @@ export default {
       deep: true
     }
   },
+  beforeDestroy() {
+    this.clearReports()
+  },
   created() {
     this.getReports()
   },
   methods: {
     ...mapActions('dashboard', ['getReports']),
-    ...mapMutations(['snackbarOpen']),
+    ...mapMutations('dashboard', ['clearReports']),
     resetFilter() {
       this.getReports()
     }

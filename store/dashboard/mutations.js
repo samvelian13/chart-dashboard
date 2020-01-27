@@ -25,5 +25,8 @@ export default {
   getReportsFailed(state) {
     state.chartLoading = false
     state.reportsChartData = null
+  },
+  clearReports(state) {
+    state.reportsChartData = null
   }
 }

@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <side-bar />
     <v-content>
       <v-container>
         <nuxt />
@@ -10,10 +11,13 @@
 </template>
 
 <script>
-import snackBar from '../components/snackbar'
+import snackBar from '~/components/snackbar'
+import sideBar from '~/components/sideBar.vue'
+
 export default {
-  middleware: 'guest',
+  middleware: 'auth',
   components: {
+    sideBar,
     snackBar
   }
 }

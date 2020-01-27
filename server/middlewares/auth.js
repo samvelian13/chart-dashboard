@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const { getToken } = require('../helpers/helpersCollection')
-const jwtSecret = 'test'
+const jwtSecret = process.env.JWT_SECRET
 
 module.exports = (req, res, next) => {
   const token = getToken(req)

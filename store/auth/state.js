@@ -1,5 +1,7 @@
-import tokenParser from '~/helpers/helperCollections'
+import { getUserFromToken } from '~/helpers/helperCollections'
+
+const token = localStorage.getItem('token')
 
 export default () => ({
-  user: tokenParser('user')
+  user: getUserFromToken(token)
 })

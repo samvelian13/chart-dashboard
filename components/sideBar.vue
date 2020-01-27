@@ -17,7 +17,9 @@
 
         <v-list-item-content>
           <v-list-item-title>Nuxt Dashboard</v-list-item-title>
-          <v-list-item-subtitle>Line Chart</v-list-item-subtitle>
+          <v-list-item-subtitle>
+            {{ user && user.userName }}
+          </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -78,6 +80,7 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 import clickOutside from '~/directives/clickOutside'
 
 export default {
@@ -91,13 +94,16 @@ export default {
       menu: []
     }
   },
+  computed: {
+    ...mapState('auth', ['user'])
+  },
   methods: {
+    ...mapMutations('auth', ['logout']),
     closeMainBar() {
       this.mini = true
     },
     onLogout() {
-      localStorage.removeItem('token')
-      this.$router.push({ name: 'auth-login' })
+      this.logout()
     }
   }
 }

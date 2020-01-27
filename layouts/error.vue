@@ -1,14 +1,21 @@
 <template>
   <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
+    <div
+      class="fill-height blue white--text d-flex flex-column flex-wrap justify-center align-center text-capitalize"
+    >
+      <div class="display-4 font-weight-thin">{{ error.statusCode }}</div>
+      <div class="display-1 font-weight-thin text-center">
+        {{ error.statusCode === 404 ? pageNotFound : otherError }}
+      </div>
+      <v-btn
+        :to="{ name: 'auth-login' }"
+        outlined
+        color="white"
+        class="mt-3 font-weight-thin"
+      >
+        <v-icon left>mdi-home</v-icon> go back
+      </v-btn>
+    </div>
   </v-app>
 </template>
 
@@ -30,15 +37,9 @@ export default {
   },
   data() {
     return {
-      pageNotFound: '404 Not Found',
+      pageNotFound: 'Oops.... page not found',
       otherError: 'An error occurred'
     }
   }
 }
 </script>
-
-<style scoped>
-h1 {
-  font-size: 20px;
-}
-</style>

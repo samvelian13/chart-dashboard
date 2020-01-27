@@ -6,12 +6,13 @@ export default {
     try {
       const result = await this.$axios.$post(LOGIN, payload)
       if (result.data) {
-        localStorage.setItem('token', btoa(JSON.stringify(result.data)))
-        commit('loginSuccess')
+        localStorage.setItem('token', result.data)
+        commit('loginSuccess', result.data)
+
         this.$router.push({ name: 'index' })
       }
     } catch (e) {
-      commit('snackbarOpen', { text: e.response.data }, { root: true })
+      this.$notify.show({ text: e.response.data })
     } finally {
       commit('mutateLoading', false)
     }
@@ -21,17 +22,13 @@ export default {
     try {
       const result = await this.$axios.$post(REGISTER, payload)
       if (result.data) {
-        localStorage.setItem('token', btoa(JSON.stringify(result.data)))
-        commit('registerSuccess')
+        localStorage.setItem('token', result.data)
+        commit('registerSuccess', result.data)
         this.$router.push({ name: 'index' })
-        commit(
-          'snackbarOpen',
-          { text: result.message, color: 'green' },
-          { root: true }
-        )
+        this.$notify.show({ text: result.message, color: 'green' })
       }
     } catch (e) {
-      commit('snackbarOpen', { text: e.response.data }, { root: true })
+      this.$notify.show({ text: e.response.data })
     } finally {
       commit('mutateLoading', false)
     }
