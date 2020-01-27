@@ -2,8 +2,8 @@
   <v-row align="center" justify="center">
     <v-col cols="12" lg="6" md="6" sm="8">
       <v-card class="elevation-12">
-        <v-overlay :value="false" absolute="absolute">
-          <v-progress-circular :size="50" color="blue" indeterminate />
+        <v-overlay :value="loading" absolute color="grey lighten-1">
+          <v-progress-circular :size="70" color="blue" indeterminate />
         </v-overlay>
         <v-toolbar color="blue" dark>
           <v-toolbar-title>Register</v-toolbar-title>
