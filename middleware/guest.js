@@ -1,4 +1,4 @@
-export default function({ store, redirect }) {
+export default ({ store, redirect }) => {
   if (store.getters['auth/loggedIn']) {
     redirect({ name: 'index' })
   }

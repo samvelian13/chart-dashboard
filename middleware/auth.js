@@ -1,6 +1,5 @@
-export default function({ store, redirect, app: { $notify } }) {
+export default ({ store, redirect }) => {
   if (!store.getters['auth/loggedIn']) {
     redirect({ name: 'auth-login' })
-    $notify.show({ text: 'Unauthorized, please login again' })
   }
 }

@@ -8,6 +8,8 @@
 # install dependencies
 $ npm install
 
+Generate JWT_SECRET in env file
+
 # serve with hot reload at localhost:3000
 $ nuxt
 

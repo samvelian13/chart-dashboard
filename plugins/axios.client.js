@@ -1,4 +1,4 @@
-export default function({ $axios, store, app }) {
+export default ({ $axios, store, app }) => {
   $axios.onRequest((request) => {
     if (
       store.getters['auth/loggedIn'] &&
